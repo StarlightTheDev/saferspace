@@ -16,10 +16,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun VenueDetailsScreenPreview() {
-    VenueDetailsScreen(VenueDetailsState())
+    MaterialTheme {
+        VenueDetailsScreen(VenueDetailsState())
+    }
 }
 
 @Composable
