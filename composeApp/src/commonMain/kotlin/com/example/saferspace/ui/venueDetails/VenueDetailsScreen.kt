@@ -42,6 +42,10 @@ fun VenueDetailsScreen(state: VenueDetailsState) {
                 style = MaterialTheme.typography.headlineLarge,
             )
         }
+        Text(
+            text = state.venue.address + "\n" + state.venue.phoneNumber,
+            style = MaterialTheme.typography.bodyMedium,
+        )
         Card(Modifier.fillMaxWidth()) {
             Text(
                 text = "SaferSpace Policy:",
@@ -57,6 +61,10 @@ fun VenueDetailsScreen(state: VenueDetailsState) {
                 )
             }
         }
+        Text(
+            text = state.venue.reviewSummary.toString(),
+            style = MaterialTheme.typography.bodyMedium,
+        )
         Text(
             text = "Reviews:",
             style = MaterialTheme.typography.headlineMedium,

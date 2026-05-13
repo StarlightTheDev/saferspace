@@ -9,8 +9,10 @@ data class Venue(
     val logoUrl: String,
     val address: String,
     val policy: String?,
+    val phoneNumber: String,
+    val reviewSummary: ReviewSummary,
     val reviews: List<Review>,
-)
+    )
     {
 
 }
