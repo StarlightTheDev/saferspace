@@ -33,12 +33,12 @@ fun VenueDetailsScreen(state: VenueDetailsState) {
     ) {
         Row {
             AsyncImage(
-                model = state.logoUrl,
-                contentDescription = "Logo for ${state.logoUrl}",
+                model = state.venue.logoUrl,
+                contentDescription = "Logo for ${state.venue.logoUrl}",
                 modifier = Modifier.size(64.dp),
             )
             Text(
-                text = state.name,
+                text = state.venue.name,
                 style = MaterialTheme.typography.headlineLarge,
             )
         }
@@ -47,9 +47,9 @@ fun VenueDetailsScreen(state: VenueDetailsState) {
                 text = "SaferSpace Policy:",
                 style = MaterialTheme.typography.headlineMedium,
             )
-            if (state.policy != null) {
+            if (state.venue.policy != null) {
                 Text(
-                    text = state.policy,
+                    text = state.venue.policy,
                 )
             } else {
                 Text(
@@ -61,7 +61,7 @@ fun VenueDetailsScreen(state: VenueDetailsState) {
             text = "Reviews:",
             style = MaterialTheme.typography.headlineMedium,
         )
-        state.reviews.forEach { review ->
+        state.venue.reviews.forEach { review ->
             ListItem(
                 headlineContent = { Text(text = review.text) },
                 overlineContent = { Text(text = "${review.date}") }
