@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,21 +19,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.example.saferspace.ui.navigation.NavigationPath
+import org.jetbrains.compose.resources.painterResource
+import saferspacefrontend.composeapp.generated.resources.Res
+import saferspacefrontend.composeapp.generated.resources.arrow_back
 
 @Preview(showBackground = true)
 @Composable
 fun VenueDetailsScreenPreview() {
     MaterialTheme {
-        VenueDetailsScreen(VenueDetailsState())
+        VenueDetailsScreen(VenueDetailsState()) {}
     }
 }
 
 @Composable
-fun VenueDetailsScreen(state: VenueDetailsState) {
+fun VenueDetailsScreen(state: VenueDetailsState, navigateTo: (NavigationPath) -> Unit) {
     Column(
         Modifier.fillMaxSize().padding(16.dp),
         Arrangement.spacedBy(16.dp)
     ) {
+        IconButton(
+            onClick = {
+                navigateTo(NavigationPath.VenueList)
+            }
+        ) {
+            Icon(painterResource(Res.drawable.arrow_back), contentDescription = null)
+        }
         Row {
             AsyncImage(
                 model = state.venue.logoUrl,

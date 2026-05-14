@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.saferspace.ui.navigation.Navigation
 import com.example.saferspace.ui.venueDetails.VenueDetailsScreenPreview
 import org.jetbrains.compose.resources.painterResource
 
@@ -24,6 +25,6 @@ import saferspacefrontend.composeapp.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme {
-        VenueDetailsScreenPreview()
+        Navigation()
     }
 }
