@@ -10,15 +10,17 @@ import com.example.saferspace.ui.venueDetails.VenueDetailsScreen
 import com.example.saferspace.ui.venueDetails.VenueDetailsState
 import com.example.saferspace.ui.venueList.VenueListScreen
 import com.example.saferspace.ui.venueList.VenueListState
+import com.example.saferspace.ui.venueMap.VenueMapScreen
 
 @Composable
 fun Navigation() {
-    var path by remember { mutableStateOf<NavigationPath>(NavigationPath.VenueList) }
+    var path by remember { mutableStateOf<NavigationPath>(NavigationPath.VenueMap) }
     val navigateTo = { p: NavigationPath ->
         path = p
     }
     AnimatedContent(path) {
         when (it) {
+            NavigationPath.VenueMap -> VenueMapScreen(navigateTo)
             NavigationPath.VenueList -> VenueListScreen(VenueListState(), navigateTo)
             is NavigationPath.VenueDetails -> VenueDetailsScreen(VenueDetailsState(it.venue), navigateTo)
         }

@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.saferspace.ui.navigation.Navigation
 import com.example.saferspace.ui.venueDetails.VenueDetailsScreenPreview
+import com.example.saferspace.ui.venueMap.VenueMapScreen
 import org.jetbrains.compose.resources.painterResource
 
 import saferspacefrontend.composeapp.generated.resources.Res
