@@ -42,7 +42,7 @@ fun VenueListScreen(state: VenueListState, navigateTo: (NavigationPath) -> Unit)
         state.venueList.forEachIndexed { index, venue ->
             SegmentedListItem(
                 onClick = {
-                    navigateTo(NavigationPath.VenueDetails(venue))
+                    navigateTo(NavigationPath.VenueDetails(venue.id))
                 },
                 shapes = ListItemDefaults.segmentedShapes(index, state.venueList.size),
                 colors = ListItemDefaults.segmentedColors(containerColor = MaterialTheme.colorScheme.primaryContainer),

@@ -2,8 +2,10 @@ package com.example.saferspace.model
 
 import com.example.saferspace.ui.venueDetails.Review
 import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
 
 data class Venue(
+    val id: Int,
     val name: String,
     val pictureUrl: String,
     val logoUrl: String,

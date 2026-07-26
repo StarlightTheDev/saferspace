@@ -1,10 +1,16 @@
 package com.example.saferspace.ui.navigation
 
-import com.example.saferspace.model.Venue
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
 
-sealed interface NavigationPath {
+@Serializable
+sealed interface NavigationPath : NavKey {
+    @Serializable
     data object VenueList : NavigationPath
 
+    @Serializable
     data object VenueMap : NavigationPath
-    data class VenueDetails(val venue: Venue) : NavigationPath
+
+    @Serializable
+    data class VenueDetails(val venueId: Int) : NavigationPath
 }

@@ -6,6 +6,7 @@ import kotlinx.datetime.LocalDate
 
 data class VenueDetailsState(
     val venue: Venue = Venue(
+        1,
         "Masken",
         "",
         "https://maskenbar.dk/wp-content/uploads/2023/07/masken-logo-fritlagt.png",

@@ -28,6 +28,7 @@ import saferspacefrontend.composeapp.generated.resources.marker
 @Composable
 fun VenueMapScreen(
     navigateTo: (NavigationPath) -> Unit,
+    // Dependency injection framework. Instantiating a Singleton
     viewModel: VenueMapViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()

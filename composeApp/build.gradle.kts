@@ -45,6 +45,9 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.maplibre.compose)
             implementation(libs.google.location)
+            implementation(libs.jetbrains.navigation3.ui)
+            //implementation(libs.jetbrains.material3.adaptiveNavigation3)
+            implementation(libs.jetbrains.lifecycle.viewmodelNavigation3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
