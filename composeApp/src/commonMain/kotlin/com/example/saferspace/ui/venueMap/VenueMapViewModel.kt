@@ -23,7 +23,7 @@ class VenueMapViewModel(
                             latitude = venuePointInfo.latitude
                         )
                     ),
-                    VenuePointProperties(label = venuePointInfo.name)
+                    VenuePointProperties(id = venuePointInfo.id, label = venuePointInfo.name)
                 )
             }))
             // Convert Flow to StateFlow
