@@ -1,5 +1,4 @@
-rootProject.name = "SaferSpaceFrontend"
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "SaferSpace"
 
 pluginManagement {
     repositories {
@@ -13,6 +12,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 dependencyResolutionManagement {
@@ -28,4 +30,7 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
+include(":app:androidApp")
+include(":app:shared")
+include(":core")
+include(":server")
