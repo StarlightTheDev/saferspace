@@ -92,11 +92,12 @@ fun VenueListScreen(state: VenueListState, onIntent: (VenueListIntent) -> Unit) 
             }
         },
         floatingActionButtonPosition = FabPosition.Start,
-    ) {
+    ) { paddingValues ->
         Column(
             Modifier.fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
-                .padding(16.dp),
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp),
             Arrangement.spacedBy(ListItemDefaults.SegmentedGap)
         ) {
             Text(
