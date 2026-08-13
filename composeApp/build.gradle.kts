@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.koin.compiler)
 }
 
 kotlin {
@@ -46,8 +47,10 @@ kotlin {
             implementation(libs.maplibre.compose)
             implementation(libs.google.location)
             implementation(libs.jetbrains.navigation3.ui)
-            //implementation(libs.jetbrains.material3.adaptiveNavigation3)
             implementation(libs.jetbrains.lifecycle.viewmodelNavigation3)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose.navigation3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

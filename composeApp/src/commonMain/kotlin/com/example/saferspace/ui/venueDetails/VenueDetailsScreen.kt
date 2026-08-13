@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.example.saferspace.ui.navigation.NavigationPath
+import com.example.saferspace.model.ReviewSummary
+import com.example.saferspace.model.Venue
+import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.painterResource
 import saferspacefrontend.composeapp.generated.resources.Res
 import saferspacefrontend.composeapp.generated.resources.arrow_back
@@ -28,19 +29,37 @@ import saferspacefrontend.composeapp.generated.resources.arrow_back
 @Composable
 fun VenueDetailsScreenPreview() {
     MaterialTheme {
-        VenueDetailsScreen(VenueDetailsState()) {}
+        VenueDetailsScreen(VenueDetailsState(
+            Venue(
+                id = 1,
+                name = "Masken Bar",
+                latitude = 55.67816,
+                longitude = 12.56862,
+                pictureUrl = "",
+                logoUrl = "https://maskenbar.dk/wp-content/uploads/2023/07/masken-logo-fritlagt.png",
+                address = "Adressefelt",
+                policy = "Politikker",
+                phoneNumber = "TLF. Nr.",
+                reviewSummary = ReviewSummary(0.1, 0.2, 0.3, 0.4, 0.5),
+                reviews = listOf(
+                    Review(LocalDate(2026, 5, 5), "Keysmash"),
+                    Review(LocalDate(2026, 5, 6), "foobar")
+                ),
+            )
+        )) {}
     }
 }
 
 @Composable
-fun VenueDetailsScreen(state: VenueDetailsState, navigateTo: (NavigationPath) -> Unit) {
+fun VenueDetailsScreen(state: VenueDetailsState, onIntent: (VenueDetailsIntent) -> Unit) {
+    if (state.venue == null) return
     Column(
         Modifier.fillMaxSize().padding(16.dp),
         Arrangement.spacedBy(16.dp)
     ) {
         IconButton(
             onClick = {
-                navigateTo(NavigationPath.VenueList)
+                onIntent(VenueDetailsIntent.Return)
             }
         ) {
             Icon(painterResource(Res.drawable.arrow_back), contentDescription = null)

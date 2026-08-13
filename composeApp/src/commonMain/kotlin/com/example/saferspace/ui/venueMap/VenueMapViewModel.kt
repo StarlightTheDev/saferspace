@@ -2,6 +2,9 @@ package com.example.saferspace.ui.venueMap
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.saferspace.repository.VenueRepo
+import com.example.saferspace.ui.navigation.NavigationPath
+import com.example.saferspace.ui.navigation.Navigator
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -11,7 +14,8 @@ import org.maplibre.spatialk.geojson.Point
 import org.maplibre.spatialk.geojson.Position
 
 class VenueMapViewModel(
-    venueRepo: VenueRepo = VenueRepo()
+    venueRepo: VenueRepo,
+    val navigator: Navigator
 ): ViewModel() {
     val state = venueRepo.findAll()
         .map { list ->
@@ -34,6 +38,9 @@ class VenueMapViewModel(
         )
 
     fun onIntent(intent: VenueMapIntent) {
-        // When-block for intents (MVI pattern)
+        when (intent) {
+            is VenueMapIntent.NavigateToDetails -> navigator.navigate(NavigationPath.VenueDetails(intent.venueId))
+            VenueMapIntent.NavigateToList -> navigator.navigate(NavigationPath.VenueList)
+        }
     }
 }

@@ -14,6 +14,8 @@ data class Venue(
     val phoneNumber: String,
     val reviewSummary: ReviewSummary,
     val reviews: List<Review>,
+    val latitude: Double,
+    val longitude: Double,
     )
     {
 

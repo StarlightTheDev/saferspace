@@ -40,24 +40,13 @@ private val json = Json { ignoreUnknownKeys = true }
 
 @Composable
 fun VenueMapScreen(
-    navigateTo: (NavigationPath) -> Unit,
-    // Dependency injection framework. Instantiating a Singleton
-    viewModel: VenueMapViewModel = viewModel()
-) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    VenueMapScreen(navigateTo, state, viewModel::onIntent)
-}
-
-@Composable
-fun VenueMapScreen(
-    navigateTo: (NavigationPath) -> Unit,
     state: VenueMapState,
     onIntent: (VenueMapIntent) -> Unit
 ) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateTo(NavigationPath.VenueList) }
+                onClick = { onIntent(VenueMapIntent.NavigateToList) }
             ) {
                 Text(text = "List")
             }
@@ -78,7 +67,7 @@ fun VenueMapScreen(
                 textOffset = offset(x = 0.em, y = 0.6.em),
                 onClick = { features ->
                     val id = json.decodeFromString<SerializerHelper>(features[0].toJson()).properties.id
-                    navigateTo(NavigationPath.VenueDetails(id))
+                    onIntent(VenueMapIntent.NavigateToDetails(id))
                     ClickResult.Consume
                 }
             )
