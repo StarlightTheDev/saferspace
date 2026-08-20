@@ -12,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -55,61 +56,63 @@ fun VenueDetailsScreenPreview() {
 
 @Composable
 fun VenueDetailsScreen(state: VenueDetailsState, onIntent: (VenueDetailsIntent) -> Unit) {
-    if (state.venue == null) return
-    Column(
-        Modifier.fillMaxSize().padding(16.dp),
-        Arrangement.spacedBy(16.dp)
-    ) {
-        IconButton(
-            onClick = {
-                onIntent(VenueDetailsIntent.Return)
-            }
+    Scaffold {
+        if (state.venue == null) return@Scaffold
+        Column(
+            Modifier.fillMaxSize().padding(16.dp),
+            Arrangement.spacedBy(16.dp)
         ) {
-            Icon(painterResource(Res.drawable.arrow_back), contentDescription = null)
-        }
-        Row {
-            AsyncImage(
-                model = state.venue.logoUrl,
-                contentDescription = "Logo for ${state.venue.logoUrl}",
-                modifier = Modifier.size(64.dp),
+            IconButton(
+                onClick = {
+                    onIntent(VenueDetailsIntent.Return)
+                }
+            ) {
+                Icon(painterResource(Res.drawable.arrow_back), contentDescription = null)
+            }
+            Row {
+                AsyncImage(
+                    model = state.venue.logoUrl,
+                    contentDescription = "Logo for ${state.venue.logoUrl}",
+                    modifier = Modifier.size(64.dp),
+                )
+                Text(
+                    text = state.venue.name,
+                    style = MaterialTheme.typography.headlineLarge,
+                )
+            }
+            Text(
+                text = state.venue.address + "\n" + state.venue.phoneNumber,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Card(Modifier.fillMaxWidth()) {
+                Text(
+                    text = "SaferSpace Policy:",
+                    style = MaterialTheme.typography.headlineMedium,
+                )
+                if (state.venue.policy != null) {
+                    Text(
+                        text = state.venue.policy!!,
+                    )
+                } else {
+                    Text(
+                        text = "No policy",
+                    )
+                }
+            }
+            Text(
+                text = state.venue.reviewSummary.toString(),
+                style = MaterialTheme.typography.bodyMedium,
             )
             Text(
-                text = state.venue.name,
-                style = MaterialTheme.typography.headlineLarge,
-            )
-        }
-        Text(
-            text = state.venue.address + "\n" + state.venue.phoneNumber,
-            style = MaterialTheme.typography.bodyMedium,
-        )
-        Card(Modifier.fillMaxWidth()) {
-            Text(
-                text = "SaferSpace Policy:",
+                text = "Reviews:",
                 style = MaterialTheme.typography.headlineMedium,
             )
-            if (state.venue.policy != null) {
-                Text(
-                    text = state.venue.policy!!,
-                )
-            } else {
-                Text(
-                    text = "No policy",
+            state.venue.reviews.forEach { review ->
+                ListItem(
+                    headlineContent = { Text(text = review.text) },
+                    overlineContent = { Text(text = "${review.date}") }
                 )
             }
-        }
-        Text(
-            text = state.venue.reviewSummary.toString(),
-            style = MaterialTheme.typography.bodyMedium,
-        )
-        Text(
-            text = "Reviews:",
-            style = MaterialTheme.typography.headlineMedium,
-        )
-        state.venue.reviews.forEach { review ->
-            ListItem(
-                headlineContent = { Text(text = review.text) },
-                overlineContent = { Text(text = "${review.date}") }
-            )
         }
     }
 }
