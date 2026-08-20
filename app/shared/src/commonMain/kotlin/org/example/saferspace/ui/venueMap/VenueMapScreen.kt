@@ -40,7 +40,7 @@ fun VenueMapScreen(
         },
         floatingActionButtonPosition = FabPosition.Start,
     ) {
-        MaplibreMap(
+/*        MaplibreMap(
             // If a style is active then the points disappear. Most likely a bug (current version is pre-release)
             //baseStyle = BaseStyle.Uri("https://tiles.openfreemap.org/styles/liberty")
         ) {
@@ -59,5 +59,7 @@ fun VenueMapScreen(
                 }
             )
         }
+
+ */
     }
 }

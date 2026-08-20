@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.koin.compiler)
+//    alias(libs.plugins.kotlinCocoapods)
 }
 
 kotlin {
@@ -19,7 +20,24 @@ kotlin {
             isStatic = true
         }
     }
-    
+    /*
+    swiftPMDependencies {
+        swiftPackage(
+            url = url("https://github.com/maplibre/maplibre-gl-native-distribution.git"),
+            version = exact("6.25.1"),
+            products = listOf(product("MapLibre")),
+            packageName = "maplibre-gl-native-distribution",
+        )
+    }
+     */
+    /*
+    cocoapods {
+        version = "1.0"
+        ios.deploymentTarget = "16.0"
+
+        pod("MapLibre", "6.25.1")
+    }
+     */
     android {
        namespace = "org.example.saferspace.app.shared"
        compileSdk = libs.versions.android.compileSdk.get().toInt()
