@@ -1,4 +1,6 @@
+import io.github.frankois944.spmForKmp.swiftPackageConfig
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,6 +10,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.koin.compiler)
 //    alias(libs.plugins.kotlinCocoapods)
+    alias(libs.plugins.spm)
 }
 
 kotlin {
@@ -19,17 +22,20 @@ kotlin {
             baseName = "Shared"
             isStatic = true
         }
+        iosTarget.swiftPackageConfig {
+            dependency {
+                remotePackageVersion(
+                    url = URI("https://github.com/maplibre/maplibre-gl-native-distribution.git"),
+                    products = {
+                        add("MapLibre", exportToKotlin = true)
+                    },
+                    packageName = "maplibre-gl-native-distribution",
+                    version = "6.28.0"
+                )
+            }
+        }
     }
-    /*
-    swiftPMDependencies {
-        swiftPackage(
-            url = url("https://github.com/maplibre/maplibre-gl-native-distribution.git"),
-            version = exact("6.25.1"),
-            products = listOf(product("MapLibre")),
-            packageName = "maplibre-gl-native-distribution",
-        )
-    }
-     */
+
     /*
     cocoapods {
         version = "1.0"
