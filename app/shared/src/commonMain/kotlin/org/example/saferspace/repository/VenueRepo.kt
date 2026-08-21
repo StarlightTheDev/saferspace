@@ -10,7 +10,7 @@ import io.ktor.serialization.kotlinx.json.json
 import org.example.saferspace.model.Venue
 
 private const val ANDROID_EMULATOR = "10.0.2.2"
-private const val LAN = "192.168.1.204" //hostname -I for Linux
+private const val LAN = "192.168.1.94" //hostname -I for Linux, network settings for Mac
 
 class VenueRepo {
     val client = HttpClient() {

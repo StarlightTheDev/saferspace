@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.datetime.LocalDate
 
 class VenueRepo {
-        private val venues = listOf(
+    val venues = listOf(
             Venue(
                 id = 1,
                 name = "MASKEN BAR OG CAFÉ",
