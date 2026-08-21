@@ -42,7 +42,7 @@ val commonModule = module {
     }
 
     navigation<NavigationPath.VenueDetails> { route ->
-        val viewModel = koinViewModel<VenueDetailsViewModel> { parametersOf(route) }
+        val viewModel = koinViewModel<VenueDetailsViewModel> { parametersOf(route.venueId) }
         val state by viewModel.state.collectAsStateWithLifecycle()
         VenueDetailsScreen(state, viewModel::onIntent)
     }

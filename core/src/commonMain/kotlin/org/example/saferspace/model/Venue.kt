@@ -1,5 +1,8 @@
 package org.example.saferspace.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Venue(
     val id: Int,
     val name: String,
